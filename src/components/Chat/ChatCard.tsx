@@ -59,7 +59,7 @@ const chatData: Chat[] = [
 
 const ChatCard = () => {
   return (
-    <div className="col-span-12 rounded-sm border border-stroke bg-white py-6 shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-4">
+    <div className="col-span-12 xl:col-span-4 rounded-lg border border-stroke bg-white py-6 shadow-default dark:border-strokedark dark:bg-boxdark xl:ml-4/5">
       <h4 className="mb-6 px-7.5 text-xl font-semibold text-black dark:text-white">
         Chats
       </h4>
@@ -75,7 +75,7 @@ const ChatCard = () => {
               <img src={chat.avatar} alt="User" />
               <span
                 className="absolute right-0 bottom-0 h-3.5 w-3.5 rounded-full border-2 border-white"
-                style={{backgroundColor: chat.color}}
+                style={{ backgroundColor: chat.color }}
               ></span>
             </div>
 
@@ -94,7 +94,6 @@ const ChatCard = () => {
               {chat.textCount !== 0 && (
                 <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary">
                   <span className="text-sm font-medium text-white">
-                    {' '}
                     {chat.textCount}
                   </span>
                 </div>

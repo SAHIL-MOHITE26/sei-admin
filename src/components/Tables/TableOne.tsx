@@ -1,9 +1,11 @@
+import  { useState } from 'react';
 import { BRAND } from '../../types/brand';
 import BrandOne from '../../images/brand/brand-01.svg';
 import BrandTwo from '../../images/brand/brand-02.svg';
 import BrandThree from '../../images/brand/brand-03.svg';
 import BrandFour from '../../images/brand/brand-04.svg';
 import BrandFive from '../../images/brand/brand-05.svg';
+import { FaSearch } from 'react-icons/fa'; // Import the search icon
 
 const brandData: BRAND[] = [
   {
@@ -49,17 +51,38 @@ const brandData: BRAND[] = [
 ];
 
 const TableOne = () => {
+  const [search, setSearch] = useState('');
+
+  const filteredBrandData = brandData.filter(brand =>
+    brand.name.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
-    <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
-      <h4 className="mb-6 text-xl font-semibold text-black dark:text-white">
-        Top Channels
-      </h4>
+    <div className="rounded-[15px] border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
+      <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center gap-2">
+          <h4 className="text-xl font-semibold text-black dark:text-white">
+            Company List
+          </h4>
+          <div className="relative align-middle left-80">
+            <input
+              type="text"
+              placeholder="Search..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="border border-gray-300 rounded-full pl-10 pr-4 py-2 w-64 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
+            />
+            <FaSearch className="absolute left-3 top-2.5 text-gray-600 dark:text-gray-400" />
+          </div>
+        </div>
+        
+      </div>
 
       <div className="flex flex-col">
         <div className="grid grid-cols-3 rounded-sm bg-gray-2 dark:bg-meta-4 sm:grid-cols-5">
           <div className="p-2.5 xl:p-5">
             <h5 className="text-sm font-medium uppercase xsm:text-base">
-              Source
+              Customer
             </h5>
           </div>
           <div className="p-2.5 text-center xl:p-5">
@@ -84,10 +107,10 @@ const TableOne = () => {
           </div>
         </div>
 
-        {brandData.map((brand, key) => (
+        {filteredBrandData.map((brand, key) => (
           <div
             className={`grid grid-cols-3 sm:grid-cols-5 ${
-              key === brandData.length - 1
+              key === filteredBrandData.length - 1
                 ? ''
                 : 'border-b border-stroke dark:border-strokedark'
             }`}
