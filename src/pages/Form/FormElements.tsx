@@ -69,6 +69,11 @@ const Dashboard: React.FC = () => {
     setShowMapForm(false);
   };
 
+  const handleAddressUpdate = (address: string) => {
+    // Handle the address update logic here
+    console.log("Updated address:", address);
+  };
+
   return (
     <div className="p-4">
       <div className="flex justify-between items-center mb-4">
@@ -112,7 +117,7 @@ const Dashboard: React.FC = () => {
       )}
 
       {showMapForm && (
-        <AddressForm onClose={closeMapForm} />
+        <AddressForm onClose={closeMapForm} onAddressUpdate={handleAddressUpdate} />
       )}
 
       <table className="min-w-full bg-white border border-gray-200 text-sm">
